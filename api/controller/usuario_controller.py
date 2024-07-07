@@ -4,8 +4,8 @@ from sqlalchemy.orm import Session
 from api.config.auth_config import get_current_user
 from api.config.database import get_db
 from api.domain.dto.dtos import TaksCreateDTO, TaksDTO, TaksUpdateDTO
-from api.repository.usuario_repository import UsuarioRepository
-from api.service.usuario_service import UsuarioService
+from api.repository.task_repository import TaskRepository
+from api.service.usuario_service import TaskService
 
 user_router = APIRouter(prefix='/users', tags=['Users'])
 

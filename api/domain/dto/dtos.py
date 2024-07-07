@@ -1,11 +1,14 @@
 from datetime import datetime
-from pydantic import BaseModel
+from pydantic import BaseModel, ConfigDict, field_validator
 from typing import Optional
 
 from api.domain.util.utils import Validate
 # não faz sentido em um api de gerenciamento de tarefas, mas pode ser usado para outro exemplo, apenas descomentar essa parte. 
 
+
+
 class TaskDTO(BaseModel):
+    model_config = ConfigDict(from_attributes=True)
     id: int
     title: str
     description: str
