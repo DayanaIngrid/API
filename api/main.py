@@ -4,7 +4,7 @@ from starlette.responses import RedirectResponse, JSONResponse
 
 # from api.config.log_config import log_config
 from api.controller.auth_controller import auth_router
-from api.controller.usuario_controller import user_router
+from api.controller.task_controller import user_router
 
 app = FastAPI(
     title="API de tarefas",

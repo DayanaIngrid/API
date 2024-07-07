@@ -3,9 +3,6 @@ from pydantic import BaseModel, ConfigDict, field_validator
 from typing import Optional
 
 from api.domain.util.utils import Validate
-# não faz sentido em um api de gerenciamento de tarefas, mas pode ser usado para outro exemplo, apenas descomentar essa parte. 
-
-
 
 class TaskDTO(BaseModel):
     model_config = ConfigDict(from_attributes=True)
@@ -41,9 +38,9 @@ class TaskCreateDTO(BaseModel):
 
 
 class TaskUpdateDTO(BaseModel):
-    title: Optional[str]
-    description: Optional[str]
-    status: Optional[str]
+    title: Optional[str] = None
+    description: Optional[str] = None
+    status: Optional[str] = None
 
     # @field_validator('phone')
     # def validate_phone(cls, phone):
