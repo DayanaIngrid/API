@@ -1,5 +1,6 @@
 from datetime import datetime
-from pydantic import BaseModel, ConfigDict, field_validator
+from pydantic import BaseModel, ConfigDict
+# field_validator
 from typing import Optional
 
 from api.domain.util.utils import Validate
@@ -20,10 +21,8 @@ class TaskDTO(BaseModel):
     # def validate_phone(cls, phone):
     #     return Validate.phone(phone)
 
-    # Faz parte do validador, descomentar caso queira usar.
-
-
 class TaskCreateDTO(BaseModel):
+    model_config = ConfigDict(from_attributes=True)
     title: str
     description: str
     status: str
@@ -38,6 +37,7 @@ class TaskCreateDTO(BaseModel):
 
 
 class TaskUpdateDTO(BaseModel):
+    model_config = ConfigDict(from_attributes=True)
     title: Optional[str] = None
     description: Optional[str] = None
     status: Optional[str] = None

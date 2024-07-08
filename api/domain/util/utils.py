@@ -1,3 +1,5 @@
+# Não foi usado pq não estamos validando, mas no caso de ser usado descomentar a parte correspondente no DTO > DTOS
+
 import re
 
 
