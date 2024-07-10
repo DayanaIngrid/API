@@ -21,8 +21,5 @@ class Settings(BaseSettings):
     TOKEN_EXPIRE_SECONDS: int
     TOKEN_SECRET_KEY: str
 
-    
-
-
 settings = Settings()
 settings.LOG_PATH = f'{PROJECT_ROOT}/{settings.LOG_PATH}'

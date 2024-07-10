@@ -6,6 +6,8 @@ from starlette.responses import RedirectResponse, JSONResponse
 from api.controller.auth_controller import auth_router
 from api.controller.task_controller import user_router
 
+
+
 app = FastAPI(
     title="API de tarefas",
     description="APi para gerenciamento de tarefas",
@@ -70,4 +72,4 @@ async def get_openapi():
 if __name__ == '__main__':
     import uvicorn
 
-    uvicorn.run(app, host='localhost', port=8000, log_config=log_config)
+    uvicorn.run(app, host='localhost', port=8000)

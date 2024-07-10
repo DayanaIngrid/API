@@ -1,5 +1,6 @@
-from sqlalchemy import Column, Integer, String
+from sqlalchemy import Column, Integer, String, DateTime
 from api.config.database import Base, engine
+
 
 class Task(Base):
     __tablename__ = 'tasks'
@@ -9,6 +10,7 @@ class Task(Base):
     description = Column(String(255))
     status = Column(String(20), nullable=False)  # Pode ser "Pendente", "Em Progresso", "Concluída"
     created_at = Column(DateTime, nullable=False)
+    updated_at = Column(DateTime, nullable=False)
 
     def __repr__(self):
         return f'<Task(id={self.id}, title={self.title}, status={self.status})>'
