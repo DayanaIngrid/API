@@ -10,7 +10,7 @@ log_config = {
     "disable_existing_loggers": False,
     "formatters": {
         "default": {
-            "format": "%(asctime)s [users-api] %(module)s.%(funcName)s - %(message)s"
+            "format": "%(asctime)s [task-api] %(module)s.%(funcName)s - %(message)s"
         }
     },
     "handlers": {

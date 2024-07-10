@@ -7,46 +7,46 @@ from api.domain.dto.dtos import TaskCreateDTO, TaskDTO, TaskUpdateDTO
 from api.repository.task_repository import TaskRepository
 from api.service.task_service import TaskService
 
-user_router = APIRouter(prefix='/users', tags=['Users'])
+user_router = APIRouter(prefix='/tasks', tags=['Tasks'])
 
 
-def get_user_repo(session: Session = Depends(get_db)):
+def get_task_repo(session: Session = Depends(get_db)):
     return TaskRepository(session=session)
 
 
-@user_router.post('/', status_code=201, description='cria um novo usuário', response_model=TaskDTO)
-async def create(
+@task_router.post('/', status_code=201, description='Cria uma nova tarefa', response_model=TaskDTO)
+async def create_task(
         request: TaskCreateDTO,
-        user_repo: TaskRepository = Depends(get_user_repo),
+        task_repo: TaskRepository = Depends(get_task_repo),
         authorization: str = Depends(get_current_user)
 ):
-    usuario_service = TaskRepository(user_repo)
-    return usuario_service.create(request)
+    task_service = TaskService(task_repo)
+    return task_service.create(title=request.title, description=request.description, status=request.status, created_at=request.created_at)
 
 
-@user_router.get('/{user_id}', status_code=200, description='Buscar usuario por ID', response_model=TaskDTO)
-async def find_by_id(user_id: int, user_repo: TaskRepository = Depends(get_user_repo),
-                     authorization: str = Depends(get_current_user)):
-    usuario_service = TaskService(user_repo)
-    return usuario_service.read(user_id=user_id)
+@task_router.get('/{task_id}', status_code=200, description='Buscar tarefa por ID', response_model=TaskDTO)
+async def find_task_by_id(task_id: int, task_repo: TaskRepository = Depends(get_task_repo),
+                          authorization: str = Depends(get_current_user)):
+    task_service = TaskService(task_repo)
+    return task_service.read(task_id=task_id)
 
 
-@user_router.get('/', status_code=200, description='Buscar todos os usuários', response_model=list[TaskDTO])
-async def find_all(user_repo: TaskRepository = Depends(get_user_repo),
-                   authorization: str = Depends(get_current_user)):
-    usuario_service = TaskService(user_repo)
-    return usuario_service.find_all()
+@task_router.get('/', status_code=200, description='Buscar todas as tarefas', response_model=list[TaskDTO])
+async def find_all_tasks(task_repo: TaskRepository = Depends(get_task_repo),
+                         authorization: str = Depends(get_current_user)):
+    task_service = TaskService(task_repo)
+    return task_service.find_all()
 
 
-@user_router.put('/{user_id}', status_code=200, description='Atualizar um usuário', response_model=TaskDTO)
-async def find_all(user_id: int, user_data: TaskUpdateDTO, user_repo: TaskRepository = Depends(get_user_repo),
-                   authorization: str = Depends(get_current_user)):
-    usuario_service = TaskService(user_repo)
-    return usuario_service.update(user_id, user_data)
+@task_router.put('/{task_id}', status_code=200, description='Atualizar uma tarefa', response_model=TaskDTO)
+async def update_task(task_id: int, task_data: TaskUpdateDTO, task_repo: TaskRepository = Depends(get_task_repo),
+                      authorization: str = Depends(get_current_user)):
+    task_service = TaskService(task_repo)
+    return task_service.update(task_id, title=task_data.title, description=task_data.description, status=task_data.status)
 
 
-@user_router.delete('/{user_id}', status_code=204, description='Deletar usuario por ID')
-async def find_by_id(user_id: int, user_repo: TaskRepository = Depends(get_user_repo),
-                     authorization: str = Depends(get_current_user)):
-    usuario_service = TaskService(user_repo)
-    usuario_service.delete(user_id=user_id)
+@task_router.delete('/{task_id}', status_code=204, description='Deletar tarefa por ID')
+async def delete_task(task_id: int, task_repo: TaskRepository = Depends(get_task_repo),
+                      authorization: str = Depends(get_current_user)):
+    task_service = TaskService(task_repo)
+    task_service.delete(task_id=task_id)

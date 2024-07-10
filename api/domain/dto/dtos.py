@@ -2,7 +2,6 @@ from datetime import datetime
 from pydantic import BaseModel, ConfigDict
 # field_validator
 from typing import Optional
-
 from api.domain.util.utils import Validate
 
 class TaskDTO(BaseModel):
