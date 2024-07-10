@@ -10,7 +10,7 @@ from api.controller.task_controller import task_router
 
 app = FastAPI(
     title="API de tarefas",
-    description="APi para gerenciamento de tarefas",
+    description="API para gerenciamento de tarefas",
     version="1.0.0",
     openapi_url="/openapi.json",
     docs_url=None,
@@ -28,10 +28,6 @@ app = FastAPI(
         {
             "url": "http://localhost:8000",
             "description": "Development server"
-        },
-        {
-            "url": "http://user.luanfernandes.dev",
-            "description": "Production server"
         }
     ]
 )
